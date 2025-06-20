@@ -313,8 +313,28 @@ Experienced in setting up scalable cloud infrastructure for data processing and 
 					</div>
 					<div class="row">
 						<div class="col-md-3 text-center animate-box">
-							<span class="colorlib-counter js-counter" data-from="0" data-to="1000" data-speed="5000" data-refresh-interval="50"></span>
+							<span class="colorlib-counter js-counter" data-from="0" data-to="1113" data-speed="5000" data-refresh-interval="50"></span>
 							<span class="colorlib-counter-label">Cups of coffee</span>
+							<script>
+  const coffeeKey = 'coffeeCounter';
+  const today = new Date().toDateString();
+
+  // Get stored data
+  let data = JSON.parse(localStorage.getItem(coffeeKey)) || { count: 1000, lastUpdate: null };
+
+  // If it's a new day, increment
+  if (data.lastUpdate !== today) {
+    data.count += 1;
+    data.lastUpdate = today;
+    localStorage.setItem(coffeeKey, JSON.stringify(data));
+  }
+
+  // Update counter on page
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelector('.colorlib-counter.js-counter').setAttribute('data-to', data.count);
+  });
+</script>
+
 						</div>
 						<div class="col-md-3 text-center animate-box">
 							<span class="colorlib-counter js-counter" data-from="0" data-to="30" data-speed="5000" data-refresh-interval="50"></span>
